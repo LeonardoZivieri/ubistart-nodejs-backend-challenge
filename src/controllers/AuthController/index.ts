@@ -144,7 +144,6 @@ export default class AuthController implements BaseController {
         auth,
       });
     } catch (error) {
-      console.error(error);
       return next(error);
     }
   };
