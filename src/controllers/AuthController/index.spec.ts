@@ -186,34 +186,30 @@ describe("Test AuthController", () => {
     expect(refresh.body.auth.token).not.toBe(creation.body.auth.token);
   });
 
-  // it("should return a 401 error when trying to refresh a invalid token", async () => {
-  //   const creation = await request(controller)
-  //     .post("/auth/register")
-  //     .type("json")
-  //     .send(
-  //       JSON.stringify({
-  //         email: `should-not-refresh-invalid-${testHash}@test.com`,
-  //         password: "strongP4$$word",
-  //       })
-  //     )
-  //     .expect(201);
+  it("should return a 401 error when trying to refresh a invalid token", async () => {
+    const creation = await request(controller)
+      .post("/auth/register")
+      .type("json")
+      .send(
+        JSON.stringify({
+          email: `should-not-refresh-invalid-${testHash}@test.com`,
+          password: "strongP4$$word",
+        })
+      )
+      .expect(201);
 
-  //   expect(creation.body.user).toBeDefined();
-  //   expect(creation.body.auth).toBeDefined();
-  //   expect(creation.body.auth.token).toBeTruthy();
+    expect(creation.body.user).toBeDefined();
+    expect(creation.body.auth).toBeDefined();
+    expect(creation.body.auth.token).toBeTruthy();
 
-  //   const refresh = await request(controller)
-  //     .post("/auth/refresh-token")
-  //     .type("json")
-  //     .send(
-  //       JSON.stringify({
-  //         token: creation.body.auth.refreshToken,
-  //       })
-  //     )
-  //     .expect(201);
-
-  //   expect(refresh.body.user).toBeDefined();
-  //   expect(refresh.body.auth).toBeDefined();
-  //   expect(refresh.body.auth.token).toBeTruthy();
-  // });
+    await request(controller)
+      .post("/auth/refresh-token")
+      .type("json")
+      .send(
+        JSON.stringify({
+          token: "invalid token",
+        })
+      )
+      .expect(401);
+  });
 });

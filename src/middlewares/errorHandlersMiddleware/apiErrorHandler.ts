@@ -7,7 +7,7 @@ const apiErrorHandler: ErrorRequestHandler = (err, req, res, next) => {
       error: err.message,
     });
   } else {
-    return next();
+    return next(err);
   }
 };
 
