@@ -7,6 +7,7 @@ import express, {
 import { ValidationError } from "yup";
 import AuthController from "./controllers/AuthController";
 import { BaseController } from "./controllers/BaseController";
+import HelloController from "./controllers/HelloController";
 import errorHandlersMiddleware from "./middlewares/errorHandlersMiddleware";
 
 // Basics of express application
@@ -17,6 +18,7 @@ server.use(bodyParser.json());
 
 // Register all Controllers of application
 const controllers: { [baseRoute: string]: BaseController } = {
+  "/hello": new HelloController(),
   "/auth": new AuthController(),
 };
 
