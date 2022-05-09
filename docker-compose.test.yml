@@ -1,0 +1,29 @@
+version: '3.8'
+services:
+  ubistart-leonardo-zivieri:
+    build:
+      context: .
+      target: base
+    ports:
+      - 8000:8000
+    environment:
+      - PORT=8080
+      - DATABASE_URL=mysql://root:ubistart-leonardo-zivieri-password@mysqlserver:3306/ubistart-zivieri
+    volumes:
+      - ./src:/usr/src/app/src
+      - ./prisma:/usr/src/app/prisma
+      - ./nodemon.json:/usr/src/app/nodemon.json
+    depends_on:
+      - mysqlserver
+    links:
+      - "mysqlserver:database"
+    command: npm run test
+
+  mysqlserver:
+    extends:
+      file: ./docker-compose.database.yml
+      service: mysqlserver
+
+volumes:
+  mysql_data:
+  mysql_config:

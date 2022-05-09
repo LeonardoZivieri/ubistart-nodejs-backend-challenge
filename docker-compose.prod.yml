@@ -1,0 +1,15 @@
+version: '3.8'
+services:
+  ubistart-leonardo-zivieri:
+    build:
+      context: .
+      target: production
+    ports:
+      - 8000:8000
+    environment:
+      - PORT=8080
+      - DATABASE_URL=mysql://root:ubistart-leonardo-zivieri-password@mysqlserver:3306/ubistart-zivieri
+    volumes:
+      - ./src:/usr/src/app/src
+      - ./nodemon.json:/usr/src/app/nodemon.json
+    command: npm run start
