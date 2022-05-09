@@ -17,6 +17,7 @@ server.use(bodyParser.json());
 
 // Register all Controllers of application
 const controllers: { [baseRoute: string]: BaseController } = {
+  "/auth": new AuthController(),
 };
 
 // Register the middlewares, to run before all routes
