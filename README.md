@@ -1,7 +1,7 @@
 
 # Objetivo do projeto
 
-O Objetivo desse projeto é completar o desafio proposto em (Ubistart/nodejs-backend-challenge)[https://github.com/Ubistart/nodejs-backend-challenge?msclkid=e3f8974bcf4011ec91e39e0c39ebb695].
+O Objetivo desse projeto é completar o desafio proposto em (Ubistart/nodejs-backend-challenge)[https://github.com/Ubistart/nodejs-backend-challenge].
 
 # Como iniciar
 
