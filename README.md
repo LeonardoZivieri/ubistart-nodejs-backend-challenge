@@ -1,7 +1,7 @@
 
 # Objetivo do projeto
 
-O Objetivo desse projeto é completar o desafio proposto em (Ubistart/nodejs-backend-challenge)[https://github.com/Ubistart/nodejs-backend-challenge].
+O Objetivo desse projeto é completar o desafio proposto em [Ubistart/nodejs-backend-challenge](https://github.com/Ubistart/nodejs-backend-challenge).
 
 # Como iniciar
 
@@ -35,7 +35,8 @@ Sem Docker: Use o comando `npm run test` e assim que terminarem os testes você 
 | ------------------------------------------------------------------- | --------------------------------------------------------------------- |
 | [HelloController](src/controllers/HelloController/documentation.md) | Dispobilizar uma forma de testar rapidamente se o serviço está online |
 | [AuthController](src/controllers/AuthController/documentation.md)   | Login e middlewares de autenticação                                   |
+| [TodoController](src/controllers/TodoController/documentation.md)   | Controle de tarefas                                                   |
 
 # Authors
 
-(Leonardo Zivieri)[https://www.linkedin.com/in/leonardo-zivieri/]
+[Leonardo Zivieri](https://www.linkedin.com/in/leonardo-zivieri/)
