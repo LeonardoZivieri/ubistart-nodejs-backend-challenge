@@ -4,7 +4,7 @@ import jsonwebtoken from "jsonwebtoken";
 import { AppPrismaClient } from "../lib/AppPrismaClient";
 import serverEnvironment from "./serverEnvironment";
 
-export default async function serverAuthorizeValidateRefreshToken(
+export default async function serverAuthorizeValidateToken(
   token: string,
   appPrismaClient: AppPrismaClient
 ): Promise<User | null> {

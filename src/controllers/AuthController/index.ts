@@ -8,7 +8,19 @@ import databaseUserPasswordRegister from "../../useCases/databaseUserPasswordReg
 import databaseUserPasswordValidator from "../../useCases/databaseUserPasswordValidator";
 import serverAuthorizeUserGetToken from "../../useCases/serverAuthorizeUserGetToken";
 import serverAuthorizeValidateRefreshToken from "../../useCases/serverAuthorizeValidateRefreshToken";
+import serverAuthorizeValidateToken from "../../useCases/serverAuthorizeValidateToken";
 import { BaseController } from "../BaseController";
+
+declare global {
+  namespace Express {
+    export interface Request {
+      authInformation?: {
+        required(): Promise<User>;
+        validate(): Promise<User | null>;
+      };
+    }
+  }
+}
 
 export default class AuthController implements BaseController {
   prismaClient: PrismaClient;
@@ -21,13 +33,23 @@ export default class AuthController implements BaseController {
 
     router.use((req, res, next) => {
       const required = async () => {
-        const user = validate();
+        const user = await validate();
         if (!user) {
           throw new ApiError(401, "Unauthorized");
         }
+        return user;
       };
       const validate = async () => {
-        console.log(req.headers.authorization);
+        const [tokenType, ...tokenInfo] = (
+          req.headers.authorization || ""
+        ).split(" ");
+        const token = tokenInfo.join(" ").trim();
+        switch (tokenType) {
+          case "Bearer":
+            return serverAuthorizeValidateToken(token, this.prismaClient);
+            break;
+        }
+        return null;
       };
       req.authInformation = { required, validate };
       next();

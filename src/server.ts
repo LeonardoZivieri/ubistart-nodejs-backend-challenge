@@ -1,13 +1,9 @@
 import bodyParser from "body-parser";
-import express, {
-  ErrorRequestHandler,
-  NextFunction,
-  RequestHandler,
-} from "express";
-import { ValidationError } from "yup";
+import express from "express";
 import AuthController from "./controllers/AuthController";
 import { BaseController } from "./controllers/BaseController";
 import HelloController from "./controllers/HelloController";
+import TodoController from "./controllers/TodoController";
 import errorHandlersMiddleware from "./middlewares/errorHandlersMiddleware";
 
 // Basics of express application
@@ -20,6 +16,7 @@ server.use(bodyParser.json());
 const controllers: { [baseRoute: string]: BaseController } = {
   "/hello": new HelloController(),
   "/auth": new AuthController(),
+  "/todo": new TodoController(),
 };
 
 // Register the middlewares, to run before all routes
